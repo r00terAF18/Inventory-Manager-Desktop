@@ -32,6 +32,8 @@
             this.btnListCustomer = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.btnListProduct = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.btnAddProduct = new MaterialSkin2DotNet.Controls.MaterialButton();
+            this.btnListOrder = new MaterialSkin2DotNet.Controls.MaterialButton();
+            this.btnAddOrder = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // btnAddCustomer
@@ -110,11 +112,51 @@
             this.btnAddProduct.UseVisualStyleBackColor = true;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
+            // btnListOrder
+            // 
+            this.btnListOrder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnListOrder.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnListOrder.Depth = 0;
+            this.btnListOrder.HighEmphasis = true;
+            this.btnListOrder.Icon = null;
+            this.btnListOrder.Location = new System.Drawing.Point(479, 63);
+            this.btnListOrder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnListOrder.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.btnListOrder.Name = "btnListOrder";
+            this.btnListOrder.Size = new System.Drawing.Size(101, 36);
+            this.btnListOrder.TabIndex = 5;
+            this.btnListOrder.Text = "List Order";
+            this.btnListOrder.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnListOrder.UseAccentColor = false;
+            this.btnListOrder.UseVisualStyleBackColor = true;
+            this.btnListOrder.Click += new System.EventHandler(this.btnListOrder_Click);
+            // 
+            // btnAddOrder
+            // 
+            this.btnAddOrder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAddOrder.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAddOrder.Depth = 0;
+            this.btnAddOrder.HighEmphasis = true;
+            this.btnAddOrder.Icon = null;
+            this.btnAddOrder.Location = new System.Drawing.Point(479, 15);
+            this.btnAddOrder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAddOrder.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.btnAddOrder.Name = "btnAddOrder";
+            this.btnAddOrder.Size = new System.Drawing.Size(101, 36);
+            this.btnAddOrder.TabIndex = 4;
+            this.btnAddOrder.Text = "Add Order";
+            this.btnAddOrder.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAddOrder.UseAccentColor = false;
+            this.btnAddOrder.UseVisualStyleBackColor = true;
+            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(444, 189);
+            this.ClientSize = new System.Drawing.Size(619, 134);
+            this.Controls.Add(this.btnListOrder);
+            this.Controls.Add(this.btnAddOrder);
             this.Controls.Add(this.btnListProduct);
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.btnListCustomer);
@@ -133,5 +175,7 @@
         private MaterialSkin2DotNet.Controls.MaterialButton btnListCustomer;
         private MaterialSkin2DotNet.Controls.MaterialButton btnListProduct;
         private MaterialSkin2DotNet.Controls.MaterialButton btnAddProduct;
+        private MaterialSkin2DotNet.Controls.MaterialButton btnListOrder;
+        private MaterialSkin2DotNet.Controls.MaterialButton btnAddOrder;
     }
 }
