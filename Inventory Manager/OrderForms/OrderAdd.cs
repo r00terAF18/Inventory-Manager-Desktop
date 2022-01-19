@@ -25,7 +25,7 @@ namespace Inventory_Manager.OrderForms
         {
             order = new Order();
             order.DateCreated = DateTime.Now;
-            order.ByCustomer = _ctx.Customers.SingleOrDefault(c => c.FullName == comboCustomer.SelectedText);
+            order.ByCustomer = _ctx.Customers.SingleOrDefault(c => c.FullName == comboCustomer.SelectedValue.ToString());
             order.Paid = switchPaid.Checked;
             order.TransportFee = double.Parse(txtTransportFee.Text);
 
@@ -44,11 +44,20 @@ namespace Inventory_Manager.OrderForms
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             OrderItem item = new OrderItem();
+
+            Product product = _ctx.Products.SingleOrDefault(p => p.Name == comboProduct.SelectedValue.ToString());
+
+            int cut = int.Parse(quantity.Value.ToString());
+
             item.Order = order;
-            item.Product = _ctx.Products.SingleOrDefault(p => p.Name == comboProduct.SelectedText);
-            item.Quantity = (int)quantity.Value;
+            item.Product = product;
+            item.Quantity = cut;
 
             _ctx.OrderItems.Add(item);
+
+            product.Count -= cut;
+            _ctx.Products.Update(product);
+
             _ctx.SaveChanges();
 
             MessageBox.Show("Item added successfully");
@@ -65,7 +74,14 @@ namespace Inventory_Manager.OrderForms
 
         private void comboProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            quantity.Maximum = _ctx.Products.SingleOrDefault(p => p.Name == comboProduct.SelectedText).Count;
+            try
+            {
+                quantity.Maximum = _ctx.Products.SingleOrDefault(p => p.Name == comboProduct.SelectedValue.ToString()).Count;
+            }
+            catch (Exception)
+            {
+                // MessageBox.Show("Please select a product");
+            }
         }
     }
 }

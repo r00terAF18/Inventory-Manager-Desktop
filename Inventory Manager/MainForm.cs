@@ -48,7 +48,8 @@ namespace Inventory_Manager
 
         private void btnListOrder_Click(object sender, EventArgs e)
         {
-
+            OrderList o = new(ctx);
+            o.Show();
         }
     }
 }
