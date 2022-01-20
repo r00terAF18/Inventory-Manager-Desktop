@@ -27,5 +27,10 @@ namespace Inventory_Manager.Models
         public virtual Customer ByCustomer { get; set; }
 
         public virtual List<OrderItem> Items { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Id} - {this.DateCreated.ToString()}";
+        }
     }
 }

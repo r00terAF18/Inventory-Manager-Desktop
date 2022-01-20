@@ -39,6 +39,10 @@ namespace Inventory_Manager.OrderForms
             comboCustomer.Enabled = false;
             switchPaid.Enabled = false;
             txtTransportFee.Enabled = false;
+
+            comboProduct.Enabled = true;
+            quantity.Enabled = true;
+            btnAddItem.Enabled = true;
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -70,6 +74,10 @@ namespace Inventory_Manager.OrderForms
         {
             comboCustomer.DataSource = _ctx.Customers.ToList();
             comboProduct.DataSource = _ctx.Products.ToList();
+
+            comboProduct.Enabled = false;
+            quantity.Enabled = false;
+            btnAddItem.Enabled = false;
         }
 
         private void comboProduct_SelectedIndexChanged(object sender, EventArgs e)

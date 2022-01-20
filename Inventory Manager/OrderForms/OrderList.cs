@@ -32,30 +32,52 @@ namespace Inventory_Manager.OrderForms
 
         private void RefreshList()
         {
-            treeView1.BeginUpdate();
-            treeView1.Nodes.Clear();
-
-            // show orders of customer in tree view
-            var orders = _ctx.Orders.ToList();
-            foreach (var order in orders)
-            {
-                TreeNode node = new TreeNode($"{order.ByCustomer.FullName} at {order.DateCreated.ToString()}");
-                // node.Nodes.Add();
-                // node.Nodes.Add(order.DateCreated.ToString());
-                // node.Nodes.Add(order.Total.ToString());
-                foreach (var item in order.Items)
-                {
-                    node.Nodes.Add(item.Product.Name);
-                }
-                treeView1.Nodes.Add(node);
-            }
-
-            treeView1.EndUpdate();
+            comboCustomer.DataSource = _ctx.Customers.ToList();
         }
 
         private void OrderList_Load(object sender, EventArgs e)
         {
             RefreshList();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshList();
+        }
+
+        private void comboCustomer_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Customer customer = _ctx.Customers.SingleOrDefault(c => c.FullName == comboCustomer.SelectedValue.ToString());
+            comboOrders.DataSource = _ctx.Orders.Where(o => o.ByCustomer == customer).ToList();
+        }
+
+        private void comboOrders_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int oid = int.Parse(comboOrders.SelectedValue.ToString().Split("-")[0]);
+                Order order = _ctx.Orders.SingleOrDefault(o => o.Id == oid);
+
+                lblPaid.Text = "Paid: " + order.Paid.ToString();
+                lblFee.Text = "Transport Fee: " + order.TransportFee.ToString();
+                lblTotal.Text = "Total: " + _ctx.OrderItems.Where(oi => oi.Order == order).ToList().Count; // order.Total.ToString()
+
+                dataTableOrderItems.DataSource = _ctx.OrderItems.Where(oi => oi.Order == order).ToList();
+            }
+            catch
+            {
+
+            }
         }
     }
 }
