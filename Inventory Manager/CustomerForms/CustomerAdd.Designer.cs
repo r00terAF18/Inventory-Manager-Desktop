@@ -76,7 +76,7 @@
             this.btnAddCustomer.Depth = 0;
             this.btnAddCustomer.HighEmphasis = true;
             this.btnAddCustomer.Icon = null;
-            this.btnAddCustomer.Location = new System.Drawing.Point(248, 189);
+            this.btnAddCustomer.Location = new System.Drawing.Point(239, 189);
             this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAddCustomer.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnAddCustomer.Name = "btnAddCustomer";
@@ -114,14 +114,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 241);
+            this.ClientSize = new System.Drawing.Size(324, 241);
             this.Controls.Add(this.lblPhoneNumber);
             this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtFullName);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(340, 280);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(340, 280);
             this.Name = "CustomerAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Customer";

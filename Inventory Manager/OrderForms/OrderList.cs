@@ -39,7 +39,7 @@ namespace Inventory_Manager.OrderForms
 
         private void OrderList_Load(object sender, EventArgs e)
         {
-            RefreshList();
+            //RefreshList();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace Inventory_Manager.OrderForms
 
                     _ctx.OrderItems.Remove(orderItem);
                     _ctx.SaveChanges();
-                    RefreshList();
+                    //RefreshList();
                 }
             }
         }

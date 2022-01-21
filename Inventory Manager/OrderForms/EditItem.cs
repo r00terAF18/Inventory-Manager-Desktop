@@ -25,7 +25,7 @@ namespace Inventory_Manager.OrderForms
         private void EditItem_Load(object sender, EventArgs e)
         {
             comboProduct.DataSource = _ctx.Products.ToList();
-            comboProduct.SelectedValue = _oItem.Product.Name;
+            //comboProduct.SelectedValue = _oItem.Product.Name;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

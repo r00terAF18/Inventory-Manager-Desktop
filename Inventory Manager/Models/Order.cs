@@ -5,7 +5,7 @@ namespace Inventory_Manager.Models
     public class Order
     {
         public int Id { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
         public bool Paid { get; set; } = false;
 
@@ -16,21 +16,29 @@ namespace Inventory_Manager.Models
             get
             {
                 double total = 0;
-                foreach (var item in Items)
+                if (Items is not null && Items.Count > 0)
                 {
-                    total += item.Product.SellPrice;
+                    foreach (var item in Items)
+                    {
+                        total += item.Product.SellPrice;
+                    }
                 }
+                else
+                {
+                    total = 0;
+                }
+                
                 return total;
             }
         }
 
-        public virtual Customer ByCustomer { get; set; }
+        public virtual Customer? ByCustomer { get; set; }
 
-        public virtual List<OrderItem> Items { get; set; }
+        public virtual List<OrderItem>? Items { get; set; }
 
         public override string ToString()
         {
-            return $"{this.Id} - {this.DateCreated.ToString()}";
+            return $"{Id} - {DateCreated.ToString()}";
         }
     }
 }

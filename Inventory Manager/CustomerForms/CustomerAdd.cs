@@ -29,6 +29,8 @@ namespace Inventory_Manager.CustomerForms
             txtFullName.Text = c.FullName;
             txtPhoneNumber.Text = c.PhoneNumber;
             btnAddCustomer.Text = "Update";
+            
+            
         }
 
         private void txtFullName_TextChanged(object sender, EventArgs e)

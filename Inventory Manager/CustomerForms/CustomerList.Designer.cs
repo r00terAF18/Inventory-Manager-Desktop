@@ -43,14 +43,13 @@
             // 
             // customerTable
             // 
+            this.customerTable.AllowUserToAddRows = false;
             this.customerTable.AllowUserToDeleteRows = false;
             this.customerTable.AllowUserToOrderColumns = true;
-            this.customerTable.AllowUserToResizeRows = false;
             this.customerTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.customerTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.customerTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customerTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
-            this.customerTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.customerTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -59,8 +58,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.customerTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.customerTable.ColumnHeadersHeight = 56;
-            this.customerTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.customerTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -72,12 +70,13 @@
             this.customerTable.Depth = 0;
             this.customerTable.Dock = System.Windows.Forms.DockStyle.Left;
             this.customerTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.customerTable.EnableHeadersVisualStyles = false;
             this.customerTable.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.customerTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.customerTable.Location = new System.Drawing.Point(0, 0);
             this.customerTable.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.customerTable.MultiSelect = false;
             this.customerTable.Name = "customerTable";
+            this.customerTable.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -86,11 +85,13 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.customerTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.customerTable.RowHeadersVisible = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.customerTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.customerTable.RowTemplate.Height = 52;
+            this.customerTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.customerTable.ShowColorStripping = true;
+            this.customerTable.ShowEditingIcon = false;
             this.customerTable.Size = new System.Drawing.Size(664, 461);
             this.customerTable.TabIndex = 0;
             // 
