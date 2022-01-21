@@ -16,7 +16,7 @@ namespace Inventory_Manager.Models
             get
             {
                 double total = 0;
-                foreach (var item in this.Items)
+                foreach (var item in Items)
                 {
                     total += item.Product.SellPrice;
                 }

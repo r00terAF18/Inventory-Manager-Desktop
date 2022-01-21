@@ -43,6 +43,8 @@
             this.lblTotal = new MaterialSkin2DotNet.Controls.MaterialLabel();
             this.txtFilterCustomer = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.materialTextBox2 = new MaterialSkin2DotNet.Controls.MaterialTextBox();
+            this.btnDeleteItem = new MaterialSkin2DotNet.Controls.MaterialButton();
+            this.btnEditItem = new MaterialSkin2DotNet.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableOrderItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +78,6 @@
             this.dataTableOrderItems.AllowUserToAddRows = false;
             this.dataTableOrderItems.AllowUserToDeleteRows = false;
             this.dataTableOrderItems.AllowUserToOrderColumns = true;
-            this.dataTableOrderItems.AllowUserToResizeRows = false;
             this.dataTableOrderItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTableOrderItems.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dataTableOrderItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -90,8 +91,7 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataTableOrderItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataTableOrderItems.ColumnHeadersHeight = 56;
-            this.dataTableOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataTableOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -124,7 +124,6 @@
             dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.dataTableOrderItems.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataTableOrderItems.RowTemplate.Height = 52;
-            this.dataTableOrderItems.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataTableOrderItems.ShowVerticalScroll = false;
             this.dataTableOrderItems.Size = new System.Drawing.Size(691, 523);
             this.dataTableOrderItems.TabIndex = 2;
@@ -158,7 +157,6 @@
             this.btnRefresh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnRefresh.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnRefresh.Depth = 0;
-            this.btnRefresh.Enabled = false;
             this.btnRefresh.HighEmphasis = true;
             this.btnRefresh.Icon = null;
             this.btnRefresh.Location = new System.Drawing.Point(12, 472);
@@ -175,19 +173,19 @@
             // 
             // btnEdit
             // 
+            this.btnEdit.AutoSize = false;
             this.btnEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnEdit.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnEdit.Depth = 0;
-            this.btnEdit.Enabled = false;
             this.btnEdit.HighEmphasis = true;
             this.btnEdit.Icon = null;
             this.btnEdit.Location = new System.Drawing.Point(13, 355);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnEdit.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(64, 36);
+            this.btnEdit.Size = new System.Drawing.Size(123, 36);
             this.btnEdit.TabIndex = 5;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "Edit Order";
             this.btnEdit.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnEdit.UseAccentColor = false;
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -198,16 +196,15 @@
             this.btnDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnDelete.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnDelete.Depth = 0;
-            this.btnDelete.Enabled = false;
             this.btnDelete.HighEmphasis = true;
             this.btnDelete.Icon = null;
             this.btnDelete.Location = new System.Drawing.Point(12, 413);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnDelete.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(73, 36);
+            this.btnDelete.Size = new System.Drawing.Size(124, 36);
             this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "Delete Order";
             this.btnDelete.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnDelete.UseAccentColor = false;
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -283,11 +280,53 @@
             this.materialTextBox2.Text = "";
             this.materialTextBox2.TrailingIcon = null;
             // 
+            // btnDeleteItem
+            // 
+            this.btnDeleteItem.AutoSize = false;
+            this.btnDeleteItem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDeleteItem.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnDeleteItem.Depth = 0;
+            this.btnDeleteItem.HighEmphasis = true;
+            this.btnDeleteItem.Icon = null;
+            this.btnDeleteItem.Location = new System.Drawing.Point(144, 413);
+            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnDeleteItem.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.btnDeleteItem.Name = "btnDeleteItem";
+            this.btnDeleteItem.Size = new System.Drawing.Size(123, 36);
+            this.btnDeleteItem.TabIndex = 13;
+            this.btnDeleteItem.Text = "Delete Item";
+            this.btnDeleteItem.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnDeleteItem.UseAccentColor = false;
+            this.btnDeleteItem.UseVisualStyleBackColor = true;
+            this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
+            // 
+            // btnEditItem
+            // 
+            this.btnEditItem.AutoSize = false;
+            this.btnEditItem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditItem.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnEditItem.Depth = 0;
+            this.btnEditItem.HighEmphasis = true;
+            this.btnEditItem.Icon = null;
+            this.btnEditItem.Location = new System.Drawing.Point(144, 355);
+            this.btnEditItem.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnEditItem.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.btnEditItem.Name = "btnEditItem";
+            this.btnEditItem.Size = new System.Drawing.Size(123, 36);
+            this.btnEditItem.TabIndex = 12;
+            this.btnEditItem.Text = "Edit Item";
+            this.btnEditItem.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnEditItem.UseAccentColor = false;
+            this.btnEditItem.UseVisualStyleBackColor = true;
+            this.btnEditItem.Click += new System.EventHandler(this.btnEditItem_Click);
+            // 
             // OrderList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 523);
+            this.Controls.Add(this.btnDeleteItem);
+            this.Controls.Add(this.btnEditItem);
             this.Controls.Add(this.materialTextBox2);
             this.Controls.Add(this.txtFilterCustomer);
             this.Controls.Add(this.lblTotal);
@@ -300,7 +339,7 @@
             this.Controls.Add(this.dataTableOrderItems);
             this.Controls.Add(this.comboCustomer);
             this.MaximizeBox = false;
-            this.MdiChildrenMinimizedAnchorBottom = false;
+            this.MinimizeBox = false;
             this.Name = "OrderList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Order List";
@@ -324,5 +363,7 @@
         private MaterialSkin2DotNet.Controls.MaterialLabel lblTotal;
         private MaterialSkin2DotNet.Controls.MaterialTextBox txtFilterCustomer;
         private MaterialSkin2DotNet.Controls.MaterialTextBox materialTextBox2;
+        private MaterialSkin2DotNet.Controls.MaterialButton btnDeleteItem;
+        private MaterialSkin2DotNet.Controls.MaterialButton btnEditItem;
     }
 }
