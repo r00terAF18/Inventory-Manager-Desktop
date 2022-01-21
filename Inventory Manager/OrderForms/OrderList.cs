@@ -32,7 +32,9 @@ namespace Inventory_Manager.OrderForms
 
         private void RefreshList()
         {
-            comboCustomer.DataSource = _ctx.Customers.ToList();
+            txtFilterCustomer.Text = String.Empty;
+            comboCustomer.Items.Clear();
+            comboCustomer.Enabled = false;
         }
 
         private void OrderList_Load(object sender, EventArgs e)
@@ -70,13 +72,23 @@ namespace Inventory_Manager.OrderForms
 
                 lblPaid.Text = "Paid: " + order.Paid.ToString();
                 lblFee.Text = "Transport Fee: " + order.TransportFee.ToString();
-                lblTotal.Text = "Total: " + _ctx.OrderItems.Where(oi => oi.Order == order).ToList().Count; // order.Total.ToString()
+                lblTotal.Text = "Total: " + order.Total.ToString(); // order.Total.ToString()
 
                 dataTableOrderItems.DataSource = _ctx.OrderItems.Where(oi => oi.Order == order).ToList();
             }
             catch
             {
 
+            }
+        }
+
+        private void txtFilterCustomer_TextChanged(object sender, EventArgs e)
+        {
+            comboCustomer.DataSource = _ctx.Customers.Where(c => c.FullName.Contains(txtFilterCustomer.Text)).ToList();
+            if (!comboCustomer.Enabled)
+            {
+                comboCustomer.Enabled = true;
+                comboOrders.Enabled = true;
             }
         }
     }

@@ -14,35 +14,60 @@ namespace Inventory_Manager.OrderForms
     public partial class OrderAdd : Form
     {
         private readonly IMContext _ctx;
-        private Order order;
+        private Order _order;
         public OrderAdd(IMContext ctx)
         {
             InitializeComponent();
             _ctx = ctx;
         }
 
+        public OrderAdd(IMContext ctx, Order order)
+        {
+            InitializeComponent();
+            _ctx = ctx;
+            _order = order;
+            btnCreateOrder.Text = "Update Order";
+        }
+
         private void btnCreateOrder_Click(object sender, EventArgs e)
         {
-            order = new Order();
-            order.DateCreated = DateTime.Now;
-            order.ByCustomer = _ctx.Customers.SingleOrDefault(c => c.FullName == comboCustomer.SelectedValue.ToString());
-            order.Paid = switchPaid.Checked;
-            order.TransportFee = double.Parse(txtTransportFee.Text);
+            if (btnCreateOrder.Text != "Update Order")
+            {
+                _order = new Order();
+                _order.DateCreated = DateTime.Now;
+                _order.ByCustomer = _ctx.Customers.SingleOrDefault(c => c.FullName == comboCustomer.SelectedValue.ToString());
+                _order.Paid = switchPaid.Checked;
+                _order.TransportFee = double.Parse(txtTransportFee.Text);
 
-            _ctx.Orders.Add(order);
-            _ctx.SaveChanges();
+                _ctx.Orders.Add(_order);
+                _ctx.SaveChanges();
 
-            txtTransportFee.Text = "";
+                txtTransportFee.Text = "";
 
-            MessageBox.Show("Order added successfully");
+                MessageBox.Show("Order added successfully");
 
-            comboCustomer.Enabled = false;
-            switchPaid.Enabled = false;
-            txtTransportFee.Enabled = false;
+                comboCustomer.Enabled = false;
+                switchPaid.Enabled = false;
+                txtTransportFee.Enabled = false;
 
-            comboProduct.Enabled = true;
-            quantity.Enabled = true;
-            btnAddItem.Enabled = true;
+                comboProduct.Enabled = true;
+                quantity.Enabled = true;
+                btnAddItem.Enabled = true;
+            }
+            else
+            {
+                _order.Paid = switchPaid.Checked;
+                _order.TransportFee = double.Parse(txtTransportFee.Text);
+
+                _ctx.Orders.Update(_order);
+                _ctx.SaveChanges();
+
+                MessageBox.Show("Order updated successfully");
+
+                comboCustomer.Enabled = false;
+                switchPaid.Enabled = false;
+                txtTransportFee.Enabled = false;
+            }
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -53,7 +78,7 @@ namespace Inventory_Manager.OrderForms
 
             int cut = int.Parse(quantity.Value.ToString());
 
-            item.Order = order;
+            item.Order = _order;
             item.Product = product;
             item.Quantity = cut;
 
