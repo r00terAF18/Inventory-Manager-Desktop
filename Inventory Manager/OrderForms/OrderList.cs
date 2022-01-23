@@ -33,7 +33,6 @@ namespace Inventory_Manager.OrderForms
         private void RefreshList()
         {
             txtFilterCustomer.Text = String.Empty;
-            comboCustomer.Items.Clear();
             comboCustomer.Enabled = false;
         }
 
@@ -52,6 +51,10 @@ namespace Inventory_Manager.OrderForms
                 OrderEdit cAdd = new(_ctx, order);
                 cAdd.Show();
             }
+            else
+            {
+                MessageBox.Show("Please select an ID Column to edit");
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -63,6 +66,11 @@ namespace Inventory_Manager.OrderForms
                     int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
                     Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
 
+                    // remove order total and transport fee from customer debt
+                    order.ByCustomer.InDebt -= order.Total + order.TransportFee;
+                    order.ByCustomer.checkStatus();
+                    _ctx.Customers.Update(order.ByCustomer);
+
                     foreach (var orderItem in _ctx.OrderItems.Where(oi => oi.Order == order))
                     {
                         _ctx.OrderItems.Remove(orderItem);
@@ -72,6 +80,10 @@ namespace Inventory_Manager.OrderForms
                     _ctx.SaveChanges();
                     RefreshList();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select an ID Column to delete");
             }
         }
 
@@ -125,6 +137,10 @@ namespace Inventory_Manager.OrderForms
                 EditItem editItem = new(_ctx, orderItem);
                 editItem.Show();
             }
+            else
+            {
+                MessageBox.Show("Please select an ID Column to edit");
+            }
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -144,6 +160,10 @@ namespace Inventory_Manager.OrderForms
                     _ctx.SaveChanges();
                     //RefreshList();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select an ID Column to delete");
             }
         }
     }

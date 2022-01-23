@@ -15,6 +15,7 @@ namespace Inventory_Manager.OrderForms
     {
         private readonly IMContext _ctx;
         private Order _order;
+        private double currentDebt;
         public OrderEdit()
         {
             InitializeComponent();
@@ -31,21 +32,25 @@ namespace Inventory_Manager.OrderForms
         {
             comboCustomer.DataSource = _ctx.Customers.ToList();
             txtTransportFee.Text = _order.TransportFee.ToString();
-            comboCustomer.SelectedText = _order.ByCustomer.FullName;
+            comboCustomer.SelectedText = _order.ByCustomer.ToString();
+
+            currentDebt = _order.ByCustomer.InDebt;
         }
 
         private void OrderEdit_FormClosed(object sender, FormClosedEventArgs e)
         {
             Customer customer = _order.ByCustomer;
+            customer.InDebt -= _order.Total + _order.TransportFee;
             if (!switchPaid.Checked)
             {
-                customer.InDebt += _order.Total + _order.TransportFee;
+                customer.InDebt += _order.Total;
             }
             else
             {
-                customer.InDebt += _order.TransportFee;
-                customer.InDebt -= _order.Total;
+                customer.InDebt -= _order.Total + _order.TransportFee;
             }
+
+            customer.checkStatus();
 
             _ctx.Customers.Update(customer);
             _ctx.SaveChanges();

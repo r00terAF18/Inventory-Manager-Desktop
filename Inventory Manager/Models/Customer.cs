@@ -29,5 +29,14 @@ namespace Inventory_Manager.Models
         {
             return this.FullName;
         }
+
+        public void checkStatus()
+        {
+            if (InDebt < 0)
+            {
+                ToRePay = InDebt * -1;
+                InDebt = 0;
+            }
+        }
     }
 }

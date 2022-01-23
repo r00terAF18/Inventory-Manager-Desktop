@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <DebugType>portable</DebugType>
+    <DebugType>none</DebugType>
     <SignAssembly>False</SignAssembly>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>

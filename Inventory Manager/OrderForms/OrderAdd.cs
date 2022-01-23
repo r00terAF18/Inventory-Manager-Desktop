@@ -102,7 +102,6 @@ namespace Inventory_Manager.OrderForms
             else
             {
                 customer.InDebt += _order.TransportFee;
-                customer.InDebt -= _order.Total;
             }
 
             _ctx.Customers.Update(customer);
