@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductAdd));
             this.txtPName = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.countStock = new System.Windows.Forms.NumericUpDown();
             this.txtSPrice = new MaterialSkin2DotNet.Controls.MaterialTextBox();
@@ -81,7 +82,7 @@
             // 
             this.txtSPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSPrice.Depth = 0;
-            this.txtSPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSPrice.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtSPrice.Hint = "Sell Price";
             this.txtSPrice.LeadingIcon = null;
             this.txtSPrice.Location = new System.Drawing.Point(12, 304);
@@ -99,7 +100,7 @@
             // 
             this.txtPPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPPrice.Depth = 0;
-            this.txtPPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPPrice.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPPrice.Hint = "Purchase Price";
             this.txtPPrice.LeadingIcon = null;
             this.txtPPrice.Location = new System.Drawing.Point(12, 212);
@@ -254,6 +255,7 @@
             this.Controls.Add(this.txtSPrice);
             this.Controls.Add(this.countStock);
             this.Controls.Add(this.txtPName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(358, 554);
             this.MinimizeBox = false;

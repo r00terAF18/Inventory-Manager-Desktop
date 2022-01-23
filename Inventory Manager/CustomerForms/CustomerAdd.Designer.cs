@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerAdd));
             this.txtFullName = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.txtPhoneNumber = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.btnAddCustomer = new MaterialSkin2DotNet.Controls.MaterialButton();
@@ -120,6 +121,7 @@
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtFullName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(340, 280);
             this.MinimizeBox = false;

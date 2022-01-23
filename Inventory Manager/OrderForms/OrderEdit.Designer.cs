@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderEdit));
             this.btnEditOrder = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.txtTransportFee = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.switchPaid = new MaterialSkin2DotNet.Controls.MaterialSwitch();
-            this.comboCustomer = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             this.SuspendLayout();
             // 
             // btnEditOrder
@@ -41,7 +41,7 @@
             this.btnEditOrder.Depth = 0;
             this.btnEditOrder.HighEmphasis = true;
             this.btnEditOrder.Icon = null;
-            this.btnEditOrder.Location = new System.Drawing.Point(12, 171);
+            this.btnEditOrder.Location = new System.Drawing.Point(12, 111);
             this.btnEditOrder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnEditOrder.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnEditOrder.Name = "btnEditOrder";
@@ -60,7 +60,7 @@
             this.txtTransportFee.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtTransportFee.Hint = "Transport Fee";
             this.txtTransportFee.LeadingIcon = null;
-            this.txtTransportFee.Location = new System.Drawing.Point(12, 112);
+            this.txtTransportFee.Location = new System.Drawing.Point(12, 52);
             this.txtTransportFee.MaxLength = 50;
             this.txtTransportFee.MouseState = MaterialSkin2DotNet.MouseState.OUT;
             this.txtTransportFee.Multiline = false;
@@ -74,7 +74,7 @@
             // 
             this.switchPaid.AutoSize = true;
             this.switchPaid.Depth = 0;
-            this.switchPaid.Location = new System.Drawing.Point(12, 72);
+            this.switchPaid.Location = new System.Drawing.Point(12, 12);
             this.switchPaid.Margin = new System.Windows.Forms.Padding(0);
             this.switchPaid.MouseLocation = new System.Drawing.Point(-1, -1);
             this.switchPaid.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
@@ -85,42 +85,19 @@
             this.switchPaid.Text = "Paid";
             this.switchPaid.UseVisualStyleBackColor = true;
             // 
-            // comboCustomer
-            // 
-            this.comboCustomer.AutoResize = false;
-            this.comboCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.comboCustomer.Depth = 0;
-            this.comboCustomer.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.comboCustomer.DropDownHeight = 174;
-            this.comboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboCustomer.DropDownWidth = 121;
-            this.comboCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.comboCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.comboCustomer.FormattingEnabled = true;
-            this.comboCustomer.Hint = "Customer";
-            this.comboCustomer.IntegralHeight = false;
-            this.comboCustomer.ItemHeight = 43;
-            this.comboCustomer.Location = new System.Drawing.Point(12, 11);
-            this.comboCustomer.MaxDropDownItems = 4;
-            this.comboCustomer.MouseState = MaterialSkin2DotNet.MouseState.OUT;
-            this.comboCustomer.Name = "comboCustomer";
-            this.comboCustomer.Size = new System.Drawing.Size(302, 49);
-            this.comboCustomer.StartIndex = 0;
-            this.comboCustomer.TabIndex = 4;
-            // 
             // OrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 233);
+            this.ClientSize = new System.Drawing.Size(331, 165);
             this.Controls.Add(this.btnEditOrder);
             this.Controls.Add(this.txtTransportFee);
             this.Controls.Add(this.switchPaid);
-            this.Controls.Add(this.comboCustomer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(347, 272);
+            this.MaximumSize = new System.Drawing.Size(347, 204);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(347, 272);
+            this.MinimumSize = new System.Drawing.Size(347, 204);
             this.Name = "OrderEdit";
             this.Text = "Edit Order";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OrderEdit_FormClosed);
@@ -135,6 +112,5 @@
         private MaterialSkin2DotNet.Controls.MaterialButton btnEditOrder;
         private MaterialSkin2DotNet.Controls.MaterialTextBox txtTransportFee;
         private MaterialSkin2DotNet.Controls.MaterialSwitch switchPaid;
-        private MaterialSkin2DotNet.Controls.MaterialComboBox comboCustomer;
     }
 }

@@ -15,7 +15,6 @@ namespace Inventory_Manager.OrderForms
     {
         private readonly IMContext _ctx;
         private Order _order;
-        private double currentDebt;
         public OrderEdit()
         {
             InitializeComponent();
@@ -30,11 +29,7 @@ namespace Inventory_Manager.OrderForms
 
         private void OrderEdit_Load(object sender, EventArgs e)
         {
-            comboCustomer.DataSource = _ctx.Customers.ToList();
             txtTransportFee.Text = _order.TransportFee.ToString();
-            comboCustomer.SelectedText = _order.ByCustomer.ToString();
-
-            currentDebt = _order.ByCustomer.InDebt;
         }
 
         private void OrderEdit_FormClosed(object sender, FormClosedEventArgs e)

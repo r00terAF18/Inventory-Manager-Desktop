@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnAddCustomer = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.btnListCustomer = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.btnListProduct = new MaterialSkin2DotNet.Controls.MaterialButton();
@@ -161,6 +162,7 @@
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.btnListCustomer);
             this.Controls.Add(this.btnAddCustomer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventory Manager";
