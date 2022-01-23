@@ -21,53 +21,31 @@ namespace Inventory_Manager.OrderForms
             _ctx = ctx;
         }
 
-        public OrderAdd(IMContext ctx, Order order)
-        {
-            InitializeComponent();
-            _ctx = ctx;
-            _order = order;
-            btnCreateOrder.Text = "Update Order";
-        }
-
         private void btnCreateOrder_Click(object sender, EventArgs e)
         {
-            if (btnCreateOrder.Text != "Update Order")
-            {
-                _order = new Order();
-                _order.DateCreated = DateTime.Now;
-                _order.ByCustomer = _ctx.Customers.SingleOrDefault(c => c.FullName == comboCustomer.SelectedValue.ToString());
-                _order.Paid = switchPaid.Checked;
-                _order.TransportFee = double.Parse(txtTransportFee.Text);
+            Customer customer = _ctx.Customers.SingleOrDefault(c => c.FullName == comboCustomer.SelectedValue.ToString());
+            _order = new Order();
+            _order.DateCreated = DateTime.Now;
+            _order.ByCustomer = customer;
+            _order.Paid = switchPaid.Checked;
 
-                _ctx.Orders.Add(_order);
-                _ctx.SaveChanges();
 
-                txtTransportFee.Text = "";
+            _order.TransportFee = double.Parse(txtTransportFee.Text);
 
-                MessageBox.Show("Order added successfully");
+            _ctx.Orders.Add(_order);
+            _ctx.SaveChanges();
 
-                comboCustomer.Enabled = false;
-                switchPaid.Enabled = false;
-                txtTransportFee.Enabled = false;
+            txtTransportFee.Text = "";
 
-                comboProduct.Enabled = true;
-                quantity.Enabled = true;
-                btnAddItem.Enabled = true;
-            }
-            else
-            {
-                _order.Paid = switchPaid.Checked;
-                _order.TransportFee = double.Parse(txtTransportFee.Text);
+            MessageBox.Show("Order added successfully");
 
-                _ctx.Orders.Update(_order);
-                _ctx.SaveChanges();
+            comboCustomer.Enabled = false;
+            switchPaid.Enabled = false;
+            txtTransportFee.Enabled = false;
 
-                MessageBox.Show("Order updated successfully");
-
-                comboCustomer.Enabled = false;
-                switchPaid.Enabled = false;
-                txtTransportFee.Enabled = false;
-            }
+            comboProduct.Enabled = true;
+            quantity.Enabled = true;
+            btnAddItem.Enabled = true;
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -90,9 +68,6 @@ namespace Inventory_Manager.OrderForms
             _ctx.SaveChanges();
 
             MessageBox.Show("Item added successfully");
-
-            // comboProduct.Enabled = false;
-            // countItem.Enabled = false;
         }
 
         private void OrderAdd_Load(object sender, EventArgs e)
@@ -115,6 +90,23 @@ namespace Inventory_Manager.OrderForms
             {
                 // MessageBox.Show("Please select a product");
             }
+        }
+
+        private void OrderAdd_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Customer customer = _order.ByCustomer;
+            if (!switchPaid.Checked)
+            {
+                customer.InDebt += _order.Total + _order.TransportFee;
+            }
+            else
+            {
+                customer.InDebt += _order.TransportFee;
+                customer.InDebt -= _order.Total;
+            }
+
+            _ctx.Customers.Update(customer);
+            _ctx.SaveChanges();
         }
     }
 }

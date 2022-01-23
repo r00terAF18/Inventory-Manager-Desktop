@@ -36,6 +36,7 @@
             this.materialDivider1 = new MaterialSkin2DotNet.Controls.MaterialDivider();
             this.comboProduct = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             this.quantity = new System.Windows.Forms.NumericUpDown();
+            this.materialLabel1 = new MaterialSkin2DotNet.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.quantity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +90,7 @@
             this.txtTransportFee.MouseState = MaterialSkin2DotNet.MouseState.OUT;
             this.txtTransportFee.Multiline = false;
             this.txtTransportFee.Name = "txtTransportFee";
-            this.txtTransportFee.Size = new System.Drawing.Size(240, 50);
+            this.txtTransportFee.Size = new System.Drawing.Size(302, 50);
             this.txtTransportFee.TabIndex = 2;
             this.txtTransportFee.Text = "";
             this.txtTransportFee.TrailingIcon = null;
@@ -170,7 +171,7 @@
             // quantity
             // 
             this.quantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.quantity.Location = new System.Drawing.Point(401, 73);
+            this.quantity.Location = new System.Drawing.Point(578, 76);
             this.quantity.Maximum = new decimal(new int[] {
             500,
             0,
@@ -191,11 +192,24 @@
             0,
             0});
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(402, 79);
+            this.materialLabel1.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(61, 19);
+            this.materialLabel1.TabIndex = 8;
+            this.materialLabel1.Text = "Quantity";
+            // 
             // OrderAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 219);
+            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.quantity);
             this.Controls.Add(this.comboProduct);
             this.Controls.Add(this.materialDivider1);
@@ -205,9 +219,12 @@
             this.Controls.Add(this.switchPaid);
             this.Controls.Add(this.comboCustomer);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(726, 258);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(726, 258);
             this.Name = "OrderAdd";
             this.Text = "OrderAdd";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OrderAdd_FormClosing);
             this.Load += new System.EventHandler(this.OrderAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.quantity)).EndInit();
             this.ResumeLayout(false);
@@ -225,5 +242,6 @@
         private MaterialSkin2DotNet.Controls.MaterialDivider materialDivider1;
         private MaterialSkin2DotNet.Controls.MaterialComboBox comboProduct;
         private NumericUpDown quantity;
+        private MaterialSkin2DotNet.Controls.MaterialLabel materialLabel1;
     }
 }

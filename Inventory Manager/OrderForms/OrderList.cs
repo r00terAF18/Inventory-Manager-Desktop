@@ -49,7 +49,7 @@ namespace Inventory_Manager.OrderForms
                 int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
                 // lblId.Text = dataTableOrderItems.SelectedCells[0].Value.ToString();
                 Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
-                OrderAdd cAdd = new(_ctx, order);
+                OrderEdit cAdd = new(_ctx, order);
                 cAdd.Show();
             }
         }

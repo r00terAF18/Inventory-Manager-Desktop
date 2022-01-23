@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory_Manager.Migrations
 {
     [DbContext(typeof(IMContext))]
-    [Migration("20220119060042_Initial")]
-    partial class Initial
+    [Migration("20220123044237_Data Annotation")]
+    partial class DataAnnotation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,9 @@ namespace Inventory_Manager.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("ToRePay")
+                        .HasColumnType("REAL");
+
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
@@ -48,7 +51,7 @@ namespace Inventory_Manager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ByCustomerId")
+                    b.Property<int?>("ByCustomerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateCreated")
@@ -126,9 +129,7 @@ namespace Inventory_Manager.Migrations
                 {
                     b.HasOne("Inventory_Manager.Models.Customer", "ByCustomer")
                         .WithMany("Orders")
-                        .HasForeignKey("ByCustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ByCustomerId");
 
                     b.Navigation("ByCustomer");
                 });

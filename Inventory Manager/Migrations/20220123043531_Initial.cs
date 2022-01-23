@@ -17,7 +17,8 @@ namespace Inventory_Manager.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     FullName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    InDebt = table.Column<double>(type: "REAL", nullable: false)
+                    InDebt = table.Column<double>(type: "REAL", nullable: false),
+                    ToRePay = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,7 +52,7 @@ namespace Inventory_Manager.Migrations
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Paid = table.Column<bool>(type: "INTEGER", nullable: false),
                     TransportFee = table.Column<double>(type: "REAL", nullable: false),
-                    ByCustomerId = table.Column<int>(type: "INTEGER", nullable: false)
+                    ByCustomerId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,8 +61,7 @@ namespace Inventory_Manager.Migrations
                         name: "FK_Orders_Customers_ByCustomerId",
                         column: x => x.ByCustomerId,
                         principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
