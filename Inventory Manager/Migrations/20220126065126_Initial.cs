@@ -17,7 +17,7 @@ namespace Inventory_Manager.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     FullName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    InDebt = table.Column<double>(type: "REAL", nullable: false),
+                    Address = table.Column<string>(type: "TEXT", nullable: true),
                     ToRePay = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>

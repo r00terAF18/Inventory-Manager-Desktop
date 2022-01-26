@@ -66,11 +66,6 @@ namespace Inventory_Manager.OrderForms
                     int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
                     Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
 
-                    // remove order total and transport fee from customer debt
-                    order.ByCustomer.InDebt -= order.Total + order.TransportFee;
-                    order.ByCustomer.checkStatus();
-                    _ctx.Customers.Update(order.ByCustomer);
-
                     foreach (var orderItem in _ctx.OrderItems.Where(oi => oi.Order == order))
                     {
                         _ctx.OrderItems.Remove(orderItem);

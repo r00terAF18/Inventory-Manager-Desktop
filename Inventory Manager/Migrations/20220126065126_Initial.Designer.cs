@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory_Manager.Migrations
 {
     [DbContext(typeof(IMContext))]
-    [Migration("20220123044237_Data Annotation")]
-    partial class DataAnnotation
+    [Migration("20220126065126_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,13 +24,13 @@ namespace Inventory_Manager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
-
-                    b.Property<double>("InDebt")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()

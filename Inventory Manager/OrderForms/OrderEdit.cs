@@ -34,21 +34,21 @@ namespace Inventory_Manager.OrderForms
 
         private void OrderEdit_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Customer customer = _order.ByCustomer;
-            customer.InDebt -= _order.Total + _order.TransportFee;
-            if (!switchPaid.Checked)
-            {
-                customer.InDebt += _order.Total;
-            }
-            else
-            {
-                customer.InDebt -= _order.Total + _order.TransportFee;
-            }
+            // Customer customer = _order.ByCustomer;
+            // customer.InDebt -= _order.Total + _order.TransportFee;
+            // if (!switchPaid.Checked)
+            // {
+            //     customer.InDebt += _order.Total;
+            // }
+            // else
+            // {
+            //     customer.InDebt -= _order.Total + _order.TransportFee;
+            // }
 
-            customer.checkStatus();
+            // customer.checkStatus();
 
-            _ctx.Customers.Update(customer);
-            _ctx.SaveChanges();
+            // _ctx.Customers.Update(customer);
+            // _ctx.SaveChanges();
         }
 
         private void btnEditOrder_Click(object sender, EventArgs e)

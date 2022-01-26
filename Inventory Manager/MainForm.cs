@@ -16,22 +16,10 @@ namespace Inventory_Manager
             ctx.Database.MigrateAsync();
         }
 
-        private void btnAddCustomer_Click(object sender, EventArgs e)
-        {
-            CustomerAdd c = new(ctx);
-            c.Show();
-        }
-
         private void btnListCustomer_Click(object sender, EventArgs e)
         {
             CustomerList c = new(ctx);
             c.Show();
-        }
-
-        private void btnAddProduct_Click(object sender, EventArgs e)
-        {
-            ProductAdd p = new(ctx);
-            p.Show();
         }
 
         private void btnListProduct_Click(object sender, EventArgs e)

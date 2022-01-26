@@ -15,9 +15,35 @@ namespace Inventory_Manager.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "Address")]
+        public string? Address { get; set; }
+
         [Range(0, double.MaxValue, ErrorMessage = "Dude, thats a bit too much debt, don't you think?")]
         [Display(Name = "In Debt")]
-        public double InDebt { get; set; }
+        // public double InDebt { get; set; }
+        public double InDebt
+        {
+            get
+            {
+                double inDebt = 0;
+                if (Orders is not null)
+                {
+                    foreach (var order in Orders)
+                    {
+                        if (order.Paid)
+                        {
+                            inDebt += order.TransportFee;
+                        }
+                        else
+                        {
+                            inDebt += order.Total + order.TransportFee;
+                        }
+                    }
+                    return inDebt;
+                }
+                return inDebt;
+            }
+        }
 
         [Range(0, double.MaxValue, ErrorMessage = "Dude, thats a bit too much to pay back, don't you think?")]
         [Display(Name = "To be Paid")]
@@ -35,7 +61,6 @@ namespace Inventory_Manager.Models
             if (InDebt < 0)
             {
                 ToRePay = InDebt * -1;
-                InDebt = 0;
             }
         }
     }

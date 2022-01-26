@@ -32,8 +32,7 @@ namespace Inventory_Manager.CustomerForms
 
         private void RefreshList()
         {
-            var customers = _ctx.Customers.ToList();
-            customerTable.DataSource = customers;
+            customerTable.DataSource = _ctx.Customers.ToList();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -51,21 +50,58 @@ namespace Inventory_Manager.CustomerForms
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshList();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (customerTable.SelectedCells[0].ColumnIndex == 0)
             {
                 int customerID = int.Parse(customerTable.SelectedCells[0].Value.ToString());
-                // lblId.Text = customerTable.SelectedCells[0].Value.ToString();
-                Customer c = _ctx.Customers.SingleOrDefault(x => x.Id == customerID);
-                CustomerAdd cAdd = new(_ctx, c);
-                cAdd.Show();
+                Customer customer = _ctx.Customers.SingleOrDefault(x => x.Id == customerID);
+
+                customer.FullName = txtFullName.Text;
+                customer.PhoneNumber = txtPhoneNumber.Text;
+                customer.Address = txtAddress.Text;
+
+                _ctx.Customers.Update(customer);
+                _ctx.SaveChanges();
+
+                RefreshList();
             }
+
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnAddCustomer_Click(object sender, EventArgs e)
         {
+            string fullName = txtFullName.Text;
+            string phoneNumber = txtPhoneNumber.Text;
+            string address = txtAddress.Text;
+            Customer customer = new()
+            {
+                FullName = fullName,
+                PhoneNumber = phoneNumber,
+                Address = address
+            };
+            _ctx.Customers.Add(customer);
+            _ctx.SaveChanges();
+
             RefreshList();
+        }
+
+        private void customerTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (customerTable.SelectedCells[0].ColumnIndex == 0)
+            {
+                int customerID = int.Parse(customerTable.SelectedCells[0].Value.ToString());
+                Customer c = _ctx.Customers.SingleOrDefault(x => x.Id == customerID);
+
+                txtFullName.Text = c.FullName;
+                txtPhoneNumber.Text = c.PhoneNumber;
+                txtAddress.Text = c.Address;
+            }
         }
     }
 }

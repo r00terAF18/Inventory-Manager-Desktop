@@ -94,18 +94,18 @@ namespace Inventory_Manager.OrderForms
 
         private void OrderAdd_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Customer customer = _order.ByCustomer;
-            if (!switchPaid.Checked)
-            {
-                customer.InDebt += _order.Total + _order.TransportFee;
-            }
-            else
-            {
-                customer.InDebt += _order.TransportFee;
-            }
+            // Customer customer = _order.ByCustomer;
+            // if (!switchPaid.Checked)
+            // {
+            //     customer.InDebt += _order.Total + _order.TransportFee;
+            // }
+            // else
+            // {
+            //     customer.InDebt += _order.TransportFee;
+            // }
 
-            _ctx.Customers.Update(customer);
-            _ctx.SaveChanges();
+            // _ctx.Customers.Update(customer);
+            // _ctx.SaveChanges();
         }
     }
 }

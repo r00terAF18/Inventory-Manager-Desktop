@@ -20,8 +20,6 @@ namespace Inventory_Manager.Models
         [Required]
         public double SellPrice { get; set; }
 
-        public DateTime DatePurchased { get; set; }
-
         public override string ToString()
         {
             return this.Name;
