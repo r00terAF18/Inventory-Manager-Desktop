@@ -24,30 +24,17 @@ namespace Inventory_Manager.OrderForms
 
         private void EditItem_Load(object sender, EventArgs e)
         {
-            comboProduct.DataSource = _ctx.Products.ToList();
+            lblProduct.Text = _oItem.Product.Name;
             //comboProduct.SelectedValue = _oItem.Product.Name;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            _oItem.Product = _ctx.Products.SingleOrDefault(p => p.Name == comboProduct.SelectedValue.ToString());
             _oItem.Quantity = int.Parse(quantity.Value.ToString());
             _ctx.OrderItems.Update(_oItem);
             _ctx.SaveChangesAsync();
 
             MessageBox.Show("Order Item Updated successfully!");
-        }
-
-        private void comboProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                quantity.Maximum = _ctx.Products.SingleOrDefault(p => p.Name == comboProduct.SelectedValue.ToString()).Count;
-            }
-            catch (Exception)
-            {
-                // MessageBox.Show("Please select a product");
-            }
         }
     }
 }
