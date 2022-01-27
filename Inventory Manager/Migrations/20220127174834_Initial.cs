@@ -15,10 +15,10 @@ namespace Inventory_Manager.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    FullName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    FullName = table.Column<string>(name: "Full Name", type: "TEXT", maxLength: 100, nullable: false),
+                    PhoneNumber = table.Column<string>(name: "Phone Number", type: "TEXT", maxLength: 20, nullable: false),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
-                    ToRePay = table.Column<double>(type: "REAL", nullable: false)
+                    TobePaid = table.Column<double>(name: "To be Paid", type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,8 +35,7 @@ namespace Inventory_Manager.Migrations
                     ProdctionYear = table.Column<string>(type: "TEXT", nullable: false),
                     Count = table.Column<int>(type: "INTEGER", nullable: false),
                     PurchasePrice = table.Column<double>(type: "REAL", nullable: false),
-                    SellPrice = table.Column<double>(type: "REAL", nullable: false),
-                    DatePurchased = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    SellPrice = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,7 +51,7 @@ namespace Inventory_Manager.Migrations
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Paid = table.Column<bool>(type: "INTEGER", nullable: false),
                     TransportFee = table.Column<double>(type: "REAL", nullable: false),
-                    ByCustomerId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ByCustomerId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,7 +60,29 @@ namespace Inventory_Manager.Migrations
                         name: "FK_Orders_Customers_ByCustomerId",
                         column: x => x.ByCustomerId,
                         principalTable: "Customers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Amount = table.Column<double>(type: "REAL", nullable: false),
+                    DatePayed = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CustomerId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payments_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,12 +126,20 @@ namespace Inventory_Manager.Migrations
                 name: "IX_Orders_ByCustomerId",
                 table: "Orders",
                 column: "ByCustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_CustomerId",
+                table: "Payments",
+                column: "CustomerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "Orders");

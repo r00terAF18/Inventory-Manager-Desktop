@@ -43,7 +43,14 @@
             this.txtFullName = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.btnUpdate = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.txtAddress = new MaterialSkin2DotNet.Controls.MaterialMultiLineTextBox();
+            this.btnPayments = new MaterialSkin2DotNet.Controls.MaterialButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.customerTable)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // customerTable
@@ -94,16 +101,16 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.customerTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.customerTable.RowHeadersVisible = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.customerTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.customerTable.RowTemplate.Height = 52;
-            this.customerTable.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.customerTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.customerTable.ShowColorStripping = true;
             this.customerTable.ShowEditingIcon = false;
             this.customerTable.ShowVerticalScroll = false;
-            this.customerTable.Size = new System.Drawing.Size(843, 461);
+            this.customerTable.Size = new System.Drawing.Size(883, 461);
             this.customerTable.TabIndex = 0;
             this.customerTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerTable_CellDoubleClick);
             // 
@@ -114,7 +121,7 @@
             this.btnRefresh.Depth = 0;
             this.btnRefresh.HighEmphasis = true;
             this.btnRefresh.Icon = null;
-            this.btnRefresh.Location = new System.Drawing.Point(850, 410);
+            this.btnRefresh.Location = new System.Drawing.Point(12, 63);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnRefresh.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnRefresh.Name = "btnRefresh";
@@ -133,7 +140,7 @@
             this.btnDelete.Depth = 0;
             this.btnDelete.HighEmphasis = true;
             this.btnDelete.Icon = null;
-            this.btnDelete.Location = new System.Drawing.Point(850, 363);
+            this.btnDelete.Location = new System.Drawing.Point(104, 63);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnDelete.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnDelete.Name = "btnDelete";
@@ -174,7 +181,7 @@
             this.btnAddCustomer.Depth = 0;
             this.btnAddCustomer.HighEmphasis = true;
             this.btnAddCustomer.Icon = null;
-            this.btnAddCustomer.Location = new System.Drawing.Point(1084, 410);
+            this.btnAddCustomer.Location = new System.Drawing.Point(183, 63);
             this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAddCustomer.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnAddCustomer.Name = "btnAddCustomer";
@@ -188,34 +195,36 @@
             // 
             // txtPhoneNumber
             // 
+            this.txtPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPhoneNumber.Depth = 0;
             this.txtPhoneNumber.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPhoneNumber.Hint = "Phone Number";
             this.txtPhoneNumber.LeadingIcon = null;
-            this.txtPhoneNumber.Location = new System.Drawing.Point(850, 68);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(12, 68);
             this.txtPhoneNumber.MaxLength = 20;
             this.txtPhoneNumber.MouseState = MaterialSkin2DotNet.MouseState.OUT;
             this.txtPhoneNumber.Multiline = false;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(303, 50);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(235, 50);
             this.txtPhoneNumber.TabIndex = 7;
             this.txtPhoneNumber.Text = "";
             this.txtPhoneNumber.TrailingIcon = null;
             // 
             // txtFullName
             // 
+            this.txtFullName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtFullName.Depth = 0;
             this.txtFullName.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtFullName.Hint = "Full Name";
             this.txtFullName.LeadingIcon = null;
-            this.txtFullName.Location = new System.Drawing.Point(850, 12);
+            this.txtFullName.Location = new System.Drawing.Point(12, 12);
             this.txtFullName.MaxLength = 50;
             this.txtFullName.MouseState = MaterialSkin2DotNet.MouseState.OUT;
             this.txtFullName.Multiline = false;
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(303, 50);
+            this.txtFullName.Size = new System.Drawing.Size(235, 50);
             this.txtFullName.TabIndex = 6;
             this.txtFullName.Text = "";
             this.txtFullName.TrailingIcon = null;
@@ -227,7 +236,7 @@
             this.btnUpdate.Depth = 0;
             this.btnUpdate.HighEmphasis = true;
             this.btnUpdate.Icon = null;
-            this.btnUpdate.Location = new System.Drawing.Point(999, 410);
+            this.btnUpdate.Location = new System.Drawing.Point(170, 15);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnUpdate.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnUpdate.Name = "btnUpdate";
@@ -241,43 +250,96 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress.Depth = 0;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress.Hint = "Address";
-            this.txtAddress.Location = new System.Drawing.Point(850, 124);
+            this.txtAddress.Location = new System.Drawing.Point(12, 124);
             this.txtAddress.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(303, 211);
+            this.txtAddress.Size = new System.Drawing.Size(235, 211);
             this.txtAddress.TabIndex = 12;
             this.txtAddress.Text = "";
+            // 
+            // btnPayments
+            // 
+            this.btnPayments.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnPayments.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnPayments.Depth = 0;
+            this.btnPayments.HighEmphasis = true;
+            this.btnPayments.Icon = null;
+            this.btnPayments.Location = new System.Drawing.Point(12, 15);
+            this.btnPayments.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnPayments.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.btnPayments.Name = "btnPayments";
+            this.btnPayments.Size = new System.Drawing.Size(99, 36);
+            this.btnPayments.TabIndex = 13;
+            this.btnPayments.Text = "Payments";
+            this.btnPayments.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnPayments.UseAccentColor = false;
+            this.btnPayments.UseVisualStyleBackColor = true;
+            this.btnPayments.Click += new System.EventHandler(this.btnPayments_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(895, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(254, 461);
+            this.panel1.TabIndex = 14;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnAddCustomer);
+            this.panel3.Controls.Add(this.btnDelete);
+            this.panel3.Controls.Add(this.btnRefresh);
+            this.panel3.Controls.Add(this.btnPayments);
+            this.panel3.Controls.Add(this.btnUpdate);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 348);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(254, 113);
+            this.panel3.TabIndex = 15;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.txtAddress);
+            this.panel2.Controls.Add(this.txtPhoneNumber);
+            this.panel2.Controls.Add(this.txtFullName);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(254, 354);
+            this.panel2.TabIndex = 15;
             // 
             // CustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1161, 461);
-            this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAddCustomer);
-            this.Controls.Add(this.txtPhoneNumber);
-            this.Controls.Add(this.txtFullName);
+            this.ClientSize = new System.Drawing.Size(1149, 461);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.lblId);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.customerTable);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1165, 500);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(787, 500);
+            this.MinimumSize = new System.Drawing.Size(1165, 500);
             this.Name = "CustomerList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer List";
             this.Load += new System.EventHandler(this.CustomerList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customerTable)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +357,9 @@
         private MaterialSkin2DotNet.Controls.MaterialTextBox txtFullName;
         private MaterialSkin2DotNet.Controls.MaterialButton btnUpdate;
         private MaterialSkin2DotNet.Controls.MaterialMultiLineTextBox txtAddress;
+        private MaterialSkin2DotNet.Controls.MaterialButton btnPayments;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
     }
 }

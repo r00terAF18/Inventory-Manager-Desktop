@@ -45,6 +45,7 @@
             this.materialTextBox2 = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.btnDeleteItem = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.btnEditItem = new MaterialSkin2DotNet.Controls.MaterialButton();
+            this.btnPrint = new MaterialSkin2DotNet.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableOrderItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +79,7 @@
             this.dataTableOrderItems.AllowUserToAddRows = false;
             this.dataTableOrderItems.AllowUserToDeleteRows = false;
             this.dataTableOrderItems.AllowUserToOrderColumns = true;
+            this.dataTableOrderItems.AllowUserToResizeRows = false;
             this.dataTableOrderItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTableOrderItems.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dataTableOrderItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -91,7 +93,8 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataTableOrderItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataTableOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTableOrderItems.ColumnHeadersHeight = 56;
+            this.dataTableOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -124,6 +127,7 @@
             dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.dataTableOrderItems.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataTableOrderItems.RowTemplate.Height = 52;
+            this.dataTableOrderItems.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataTableOrderItems.ShowVerticalScroll = false;
             this.dataTableOrderItems.Size = new System.Drawing.Size(691, 523);
             this.dataTableOrderItems.TabIndex = 2;
@@ -154,6 +158,7 @@
             // 
             // btnRefresh
             // 
+            this.btnRefresh.AutoSize = false;
             this.btnRefresh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnRefresh.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnRefresh.Depth = 0;
@@ -163,7 +168,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnRefresh.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(84, 36);
+            this.btnRefresh.Size = new System.Drawing.Size(124, 36);
             this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -320,11 +325,32 @@
             this.btnEditItem.UseVisualStyleBackColor = true;
             this.btnEditItem.Click += new System.EventHandler(this.btnEditItem_Click);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.AutoSize = false;
+            this.btnPrint.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnPrint.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnPrint.Depth = 0;
+            this.btnPrint.HighEmphasis = true;
+            this.btnPrint.Icon = null;
+            this.btnPrint.Location = new System.Drawing.Point(144, 472);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnPrint.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(123, 36);
+            this.btnPrint.TabIndex = 14;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnPrint.UseAccentColor = false;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // OrderList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 523);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnDeleteItem);
             this.Controls.Add(this.btnEditItem);
             this.Controls.Add(this.materialTextBox2);
@@ -365,5 +391,6 @@
         private MaterialSkin2DotNet.Controls.MaterialTextBox materialTextBox2;
         private MaterialSkin2DotNet.Controls.MaterialButton btnDeleteItem;
         private MaterialSkin2DotNet.Controls.MaterialButton btnEditItem;
+        private MaterialSkin2DotNet.Controls.MaterialButton btnPrint;
     }
 }

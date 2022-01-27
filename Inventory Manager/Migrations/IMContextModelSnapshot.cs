@@ -23,20 +23,24 @@ namespace Inventory_Manager.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Address")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Address");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Full Name");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Phone Number");
 
                     b.Property<double>("ToRePay")
-                        .HasColumnType("REAL");
+                        .HasColumnType("REAL")
+                        .HasColumnName("To be Paid");
 
                     b.HasKey("Id");
 
@@ -49,7 +53,7 @@ namespace Inventory_Manager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ByCustomerId")
+                    b.Property<int>("ByCustomerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateCreated")
@@ -92,6 +96,32 @@ namespace Inventory_Manager.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("Inventory_Manager.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DatePayed")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("Inventory_Manager.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -124,7 +154,9 @@ namespace Inventory_Manager.Migrations
                 {
                     b.HasOne("Inventory_Manager.Models.Customer", "ByCustomer")
                         .WithMany("Orders")
-                        .HasForeignKey("ByCustomerId");
+                        .HasForeignKey("ByCustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ByCustomer");
                 });
@@ -148,9 +180,22 @@ namespace Inventory_Manager.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Inventory_Manager.Models.Payment", b =>
+                {
+                    b.HasOne("Inventory_Manager.Models.Customer", "Customer")
+                        .WithMany("Payments")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("Inventory_Manager.Models.Customer", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("Inventory_Manager.Models.Order", b =>

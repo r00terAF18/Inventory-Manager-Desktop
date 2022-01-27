@@ -80,7 +80,7 @@
             this.btnListOrder.Depth = 0;
             this.btnListOrder.HighEmphasis = true;
             this.btnListOrder.Icon = null;
-            this.btnListOrder.Location = new System.Drawing.Point(479, 63);
+            this.btnListOrder.Location = new System.Drawing.Point(354, 63);
             this.btnListOrder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnListOrder.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnListOrder.Name = "btnListOrder";
@@ -99,7 +99,7 @@
             this.btnAddOrder.Depth = 0;
             this.btnAddOrder.HighEmphasis = true;
             this.btnAddOrder.Icon = null;
-            this.btnAddOrder.Location = new System.Drawing.Point(479, 15);
+            this.btnAddOrder.Location = new System.Drawing.Point(354, 15);
             this.btnAddOrder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAddOrder.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
             this.btnAddOrder.Name = "btnAddOrder";

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inventory_Manager.Models
 {
@@ -7,19 +8,19 @@ namespace Inventory_Manager.Models
         public int Id { get; set; }
         [Required]
         [StringLength(100)]
-        [Display(Name = "Full Name", Description = "Full Name", Prompt = "Full Name")]
+        [Column("Full Name")]
         public string FullName { get; set; }
-        
+
         [Required]
         [StringLength(20)]
-        [Display(Name = "Phone Number")]
+        [Column("Phone Number")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "Address")]
+        [Column("Address")]
         public string? Address { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "Dude, thats a bit too much debt, don't you think?")]
-        [Display(Name = "In Debt")]
+        [Column("In Debt")]
         // public double InDebt { get; set; }
         public double InDebt
         {
@@ -39,17 +40,25 @@ namespace Inventory_Manager.Models
                             inDebt += order.Total + order.TransportFee;
                         }
                     }
-                    return inDebt;
+                }
+                if (Payments is not null)
+                {
+                    foreach (var payment in Payments)
+                    {
+                        inDebt -= payment.Amount;
+                    }
                 }
                 return inDebt;
             }
         }
 
         [Range(0, double.MaxValue, ErrorMessage = "Dude, thats a bit too much to pay back, don't you think?")]
-        [Display(Name = "To be Paid")]
+        [Column("To be Paid")]
         public double ToRePay { get; set; }
 
-        public List<Order> Orders { get; set; }
+        public virtual List<Order> Orders { get; set; }
+
+        public List<Payment> Payments { get; set; }
 
         public override string ToString()
         {

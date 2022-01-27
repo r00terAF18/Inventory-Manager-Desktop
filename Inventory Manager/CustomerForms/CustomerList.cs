@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Manager.Models;
+using Inventory_Manager.PaymentForms;
 
 namespace Inventory_Manager.CustomerForms
 {
@@ -101,6 +102,17 @@ namespace Inventory_Manager.CustomerForms
                 txtFullName.Text = c.FullName;
                 txtPhoneNumber.Text = c.PhoneNumber;
                 txtAddress.Text = c.Address;
+            }
+        }
+
+        private void btnPayments_Click(object sender, EventArgs e)
+        {
+            if (customerTable.SelectedCells[0].ColumnIndex == 0)
+            {
+                int customerID = int.Parse(customerTable.SelectedCells[0].Value.ToString());
+                Customer c = _ctx.Customers.SingleOrDefault(x => x.Id == customerID);
+                PaymentList paymentList = new PaymentList(_ctx, c);
+                paymentList.Show();
             }
         }
     }

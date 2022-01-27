@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Manager.Models;
+using PdfSharpCore;
+using PdfSharpCore.Pdf;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Utils;
 
 // First a combo box with customer names
 // then when the customer combo box is changed the order list is refreshed
@@ -159,6 +163,46 @@ namespace Inventory_Manager.OrderForms
             else
             {
                 MessageBox.Show("Please select an ID Column to delete");
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (dataTableOrderItems.SelectedCells[0].ColumnIndex == 0)
+            {
+                int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
+                // lblId.Text = dataTableOrderItems.SelectedCells[0].Value.ToString();
+                Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
+
+                PdfDocument doc = new PdfDocument();
+                PdfPage page = doc.Pages.Add();
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+                XFont font = new XFont("Verdana", 10, XFontStyle.Regular);
+
+                gfx.DrawString("Customer: " + order.ByCustomer.FullName, font, XBrushes.Black, new XRect(0, 30, page.Width, page.Height), XStringFormats.TopCenter);
+                gfx.DrawString("Date: " + order.DateCreated.ToString(), font, XBrushes.Black, new XRect(0, 50, page.Width, page.Height), XStringFormats.TopCenter);
+                gfx.DrawString("Paid: " + order.Paid.ToString(), font, XBrushes.Black, new XRect(0, 70, page.Width, page.Height), XStringFormats.TopCenter);
+                gfx.DrawString("Transport Fee: " + order.TransportFee.ToString(), font, XBrushes.Black, new XRect(0, 90, page.Width, page.Height), XStringFormats.TopCenter);
+                gfx.DrawString("Total: " + order.Total.ToString(), font, XBrushes.Black, new XRect(0, 110, page.Width, page.Height), XStringFormats.TopCenter);
+
+                gfx.DrawString("Product", font, XBrushes.Black, new XRect(0, 160, page.Width, page.Height), XStringFormats.TopCenter);
+                gfx.DrawString("Quantity", font, XBrushes.Black, new XRect(100, 160, page.Width, page.Height), XStringFormats.TopCenter);
+                gfx.DrawString("Price", font, XBrushes.Black, new XRect(200, 160, page.Width, page.Height), XStringFormats.TopCenter);
+
+                int y = 180;
+                foreach (OrderItem orderItem in order.Items)
+                {
+                    gfx.DrawString(orderItem.Product.Name, font, XBrushes.Black, new XRect(0, y, page.Width, page.Height), XStringFormats.TopCenter);
+                    gfx.DrawString(orderItem.Quantity.ToString(), font, XBrushes.Black, new XRect(100, y, page.Width, page.Height), XStringFormats.TopCenter);
+                    gfx.DrawString(orderItem.Product.SellPrice.ToString(), font, XBrushes.Black, new XRect(200, y, page.Width, page.Height), XStringFormats.TopCenter);
+                    y += 20;
+                }
+
+                doc.Save("Order_" + order.Id.ToString() + ".pdf");
+            }
+            else
+            {
+                MessageBox.Show("Please select an ID Column to edit");
             }
         }
     }
