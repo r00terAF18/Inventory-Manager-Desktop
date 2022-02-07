@@ -54,7 +54,20 @@ namespace Inventory_Manager.Models
 
         [Range(0, double.MaxValue, ErrorMessage = "Dude, thats a bit too much to pay back, don't you think?")]
         [Column("To be Paid")]
-        public double ToRePay { get; set; }
+        public double ToRePay
+        {
+            get
+            {
+                if (InDebt < 0)
+                {
+                    return -InDebt;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
 
         public virtual List<Order> Orders { get; set; }
 
@@ -63,14 +76,6 @@ namespace Inventory_Manager.Models
         public override string ToString()
         {
             return this.FullName;
-        }
-
-        public void checkStatus()
-        {
-            if (InDebt < 0)
-            {
-                ToRePay = InDebt * -1;
-            }
         }
     }
 }

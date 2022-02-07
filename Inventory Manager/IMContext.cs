@@ -4,7 +4,7 @@ using Inventory_Manager.Models;
 public class IMContext : DbContext
 {
     public DbSet<Customer>? Customers { get; set; }
-    public DbSet<Payment> Payments { get; set; }
+    public DbSet<Payment>? Payments { get; set; }
     public DbSet<Product>? Products { get; set; }
     public DbSet<Order>? Orders { get; set; }
     public DbSet<OrderItem>? OrderItems { get; set; }
@@ -14,8 +14,7 @@ public class IMContext : DbContext
     public IMContext()
     {
         var folder = $@"C:\Users\{Environment.UserName}\Dropbox\";
-        // var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(folder, "IM.db");
+        DbPath = Path.Join(folder, "Inventory Manager_Database.db");
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)

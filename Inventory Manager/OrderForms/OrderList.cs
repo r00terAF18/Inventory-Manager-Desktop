@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using Inventory_Manager.Models;
-using PdfSharpCore;
-using PdfSharpCore.Pdf;
-using PdfSharpCore.Drawing;
-using PdfSharpCore.Utils;
+using iText.Html2pdf;
+using HtmlAgilityPack;
 
-// First a combo box with customer names
-// then when the customer combo box is changed the order list is refreshed
-// then when the order list is changed the order details are displayed
-// in a datatable
 
 namespace Inventory_Manager.OrderForms
 {
@@ -171,34 +157,69 @@ namespace Inventory_Manager.OrderForms
             if (dataTableOrderItems.SelectedCells[0].ColumnIndex == 0)
             {
                 int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
-                // lblId.Text = dataTableOrderItems.SelectedCells[0].Value.ToString();
                 Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
 
-                PdfDocument doc = new PdfDocument();
-                PdfPage page = doc.Pages.Add();
-                XGraphics gfx = XGraphics.FromPdfPage(page);
-                XFont font = new XFont("Verdana", 10, XFontStyle.Regular);
+                string empty_table_row = @"
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>-</td>
+                </tr>";
 
-                gfx.DrawString("Customer: " + order.ByCustomer.FullName, font, XBrushes.Black, new XRect(0, 30, page.Width, page.Height), XStringFormats.TopCenter);
-                gfx.DrawString("Date: " + order.DateCreated.ToString(), font, XBrushes.Black, new XRect(0, 50, page.Width, page.Height), XStringFormats.TopCenter);
-                gfx.DrawString("Paid: " + order.Paid.ToString(), font, XBrushes.Black, new XRect(0, 70, page.Width, page.Height), XStringFormats.TopCenter);
-                gfx.DrawString("Transport Fee: " + order.TransportFee.ToString(), font, XBrushes.Black, new XRect(0, 90, page.Width, page.Height), XStringFormats.TopCenter);
-                gfx.DrawString("Total: " + order.Total.ToString(), font, XBrushes.Black, new XRect(0, 110, page.Width, page.Height), XStringFormats.TopCenter);
 
-                gfx.DrawString("Product", font, XBrushes.Black, new XRect(0, 160, page.Width, page.Height), XStringFormats.TopCenter);
-                gfx.DrawString("Quantity", font, XBrushes.Black, new XRect(100, 160, page.Width, page.Height), XStringFormats.TopCenter);
-                gfx.DrawString("Price", font, XBrushes.Black, new XRect(200, 160, page.Width, page.Height), XStringFormats.TopCenter);
 
-                int y = 180;
-                foreach (OrderItem orderItem in order.Items)
+                string inv_id = $"INV-{order.Id.ToString()}";
+                string issued = DateTime.Now.ToString("MM dd yyyy");
+                string customer = order.ByCustomer.FullName;
+
+                string html_doc = "";
+
+                using (StreamReader sr = new StreamReader("index.html"))
                 {
-                    gfx.DrawString(orderItem.Product.Name, font, XBrushes.Black, new XRect(0, y, page.Width, page.Height), XStringFormats.TopCenter);
-                    gfx.DrawString(orderItem.Quantity.ToString(), font, XBrushes.Black, new XRect(100, y, page.Width, page.Height), XStringFormats.TopCenter);
-                    gfx.DrawString(orderItem.Product.SellPrice.ToString(), font, XBrushes.Black, new XRect(200, y, page.Width, page.Height), XStringFormats.TopCenter);
-                    y += 20;
+                    html_doc = sr.ReadToEnd();
                 }
 
-                doc.Save("Order_" + order.Id.ToString() + ".pdf");
+                var doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(html_doc);
+
+                doc.GetElementbyId("customer").InnerHtml = customer;
+                doc.GetElementbyId("inv-id").InnerHtml = inv_id;
+                doc.GetElementbyId("issued").InnerHtml = issued;
+                doc.GetElementbyId("subtotal").InnerHtml = order.Total.ToString();
+                doc.GetElementbyId("transport_fee").InnerHtml = order.TransportFee.ToString();
+                doc.GetElementbyId("debt").InnerHtml = order.ByCustomer.InDebt.ToString();
+
+                foreach (OrderItem orderItem in order.Items)
+                {
+                    string amount = (orderItem.Product.SellPrice * orderItem.Quantity).ToString();
+                    string table_row = $@"
+                    <tr>
+                        <td>{orderItem.Product.Name}</td>
+                        <td>{orderItem.Quantity.ToString()}</td>
+                        <td>{orderItem.Product.SellPrice.ToString()}</td>
+                        <td>{amount}</td>
+                    </tr>";
+                    doc.GetElementbyId("tbody").InnerHtml += table_row;
+                }
+                if (order.Items.Count <= 2)
+                {
+                    for (int i = 0; i <= 4; i++)
+                    {
+                        doc.GetElementbyId("tbody").InnerHtml += empty_table_row;
+                    }
+                }
+
+                doc.Save("invoice.html");
+
+                using (FileStream htmlSource = File.Open(@"invoice.html", FileMode.Open))
+                using (FileStream pdfDest = File.Open($@"C:\Users\{Environment.UserName}\Documents\Invoice.pdf", FileMode.OpenOrCreate))
+                {
+                    ConverterProperties converterProperties = new ConverterProperties();
+                    HtmlConverter.ConvertToPdf(htmlSource, pdfDest, converterProperties);
+                }
+
+                MessageBox.Show("Created Invoice!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
