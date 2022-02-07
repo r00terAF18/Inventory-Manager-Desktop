@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboCustomer = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             this.dataTableOrderItems = new MaterialSkin2DotNet.Controls.MaterialDataTable();
             this.comboOrders = new MaterialSkin2DotNet.Controls.MaterialComboBox();
@@ -42,7 +42,7 @@
             this.lblFee = new MaterialSkin2DotNet.Controls.MaterialLabel();
             this.lblTotal = new MaterialSkin2DotNet.Controls.MaterialLabel();
             this.txtFilterCustomer = new MaterialSkin2DotNet.Controls.MaterialTextBox();
-            this.materialTextBox2 = new MaterialSkin2DotNet.Controls.MaterialTextBox();
+            this.txtFilterOrder = new MaterialSkin2DotNet.Controls.MaterialTextBox();
             this.btnDeleteItem = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.btnEditItem = new MaterialSkin2DotNet.Controls.MaterialButton();
             this.btnPrint = new MaterialSkin2DotNet.Controls.MaterialButton();
@@ -85,24 +85,24 @@
             this.dataTableOrderItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataTableOrderItems.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
             this.dataTableOrderItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataTableOrderItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataTableOrderItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataTableOrderItems.ColumnHeadersHeight = 56;
             this.dataTableOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataTableOrderItems.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataTableOrderItems.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataTableOrderItems.Depth = 0;
             this.dataTableOrderItems.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataTableOrderItems.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -114,18 +114,18 @@
             this.dataTableOrderItems.MultiSelect = false;
             this.dataTableOrderItems.Name = "dataTableOrderItems";
             this.dataTableOrderItems.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataTableOrderItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataTableOrderItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataTableOrderItems.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.dataTableOrderItems.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dataTableOrderItems.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataTableOrderItems.RowTemplate.Height = 52;
             this.dataTableOrderItems.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataTableOrderItems.ShowVerticalScroll = false;
@@ -145,6 +145,7 @@
             this.comboOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.comboOrders.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.comboOrders.FormattingEnabled = true;
+            this.comboOrders.Hint = "Select Order";
             this.comboOrders.IntegralHeight = false;
             this.comboOrders.ItemHeight = 43;
             this.comboOrders.Location = new System.Drawing.Point(12, 167);
@@ -269,21 +270,23 @@
             this.txtFilterCustomer.TrailingIcon = null;
             this.txtFilterCustomer.TextChanged += new System.EventHandler(this.txtFilterCustomer_TextChanged);
             // 
-            // materialTextBox2
+            // txtFilterOrder
             // 
-            this.materialTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox2.Depth = 0;
-            this.materialTextBox2.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox2.LeadingIcon = null;
-            this.materialTextBox2.Location = new System.Drawing.Point(13, 111);
-            this.materialTextBox2.MaxLength = 50;
-            this.materialTextBox2.MouseState = MaterialSkin2DotNet.MouseState.OUT;
-            this.materialTextBox2.Multiline = false;
-            this.materialTextBox2.Name = "materialTextBox2";
-            this.materialTextBox2.Size = new System.Drawing.Size(258, 50);
-            this.materialTextBox2.TabIndex = 11;
-            this.materialTextBox2.Text = "";
-            this.materialTextBox2.TrailingIcon = null;
+            this.txtFilterOrder.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFilterOrder.Depth = 0;
+            this.txtFilterOrder.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtFilterOrder.Hint = "Filter Order (day of date)";
+            this.txtFilterOrder.LeadingIcon = null;
+            this.txtFilterOrder.Location = new System.Drawing.Point(13, 111);
+            this.txtFilterOrder.MaxLength = 50;
+            this.txtFilterOrder.MouseState = MaterialSkin2DotNet.MouseState.OUT;
+            this.txtFilterOrder.Multiline = false;
+            this.txtFilterOrder.Name = "txtFilterOrder";
+            this.txtFilterOrder.Size = new System.Drawing.Size(258, 50);
+            this.txtFilterOrder.TabIndex = 11;
+            this.txtFilterOrder.Text = "";
+            this.txtFilterOrder.TrailingIcon = null;
+            this.txtFilterOrder.TextChanged += new System.EventHandler(this.txtFilterOrder_TextChanged);
             // 
             // btnDeleteItem
             // 
@@ -353,7 +356,7 @@
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnDeleteItem);
             this.Controls.Add(this.btnEditItem);
-            this.Controls.Add(this.materialTextBox2);
+            this.Controls.Add(this.txtFilterOrder);
             this.Controls.Add(this.txtFilterCustomer);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblFee);
@@ -388,7 +391,7 @@
         private MaterialSkin2DotNet.Controls.MaterialLabel lblFee;
         private MaterialSkin2DotNet.Controls.MaterialLabel lblTotal;
         private MaterialSkin2DotNet.Controls.MaterialTextBox txtFilterCustomer;
-        private MaterialSkin2DotNet.Controls.MaterialTextBox materialTextBox2;
+        private MaterialSkin2DotNet.Controls.MaterialTextBox txtFilterOrder;
         private MaterialSkin2DotNet.Controls.MaterialButton btnDeleteItem;
         private MaterialSkin2DotNet.Controls.MaterialButton btnEditItem;
         private MaterialSkin2DotNet.Controls.MaterialButton btnPrint;

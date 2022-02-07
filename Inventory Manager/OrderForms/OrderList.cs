@@ -32,27 +32,27 @@ namespace Inventory_Manager.OrderForms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dataTableOrderItems.SelectedCells[0].ColumnIndex == 0)
+            try
             {
-                int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
+                int orderId = int.Parse(comboOrders.SelectedValue.ToString().Split('-')[0]);
                 // lblId.Text = dataTableOrderItems.SelectedCells[0].Value.ToString();
                 Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
                 OrderEdit cAdd = new(_ctx, order);
                 cAdd.Show();
             }
-            else
+            catch
             {
-                MessageBox.Show("Please select an ID Column to edit");
+                MessageBox.Show("Please select an order to edit");
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dataTableOrderItems.SelectedCells[0].ColumnIndex == 0)
+            try
             {
                 if (MessageBox.Show("Are you sure you want to delete this Order?", "Delete Order", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
+                    int orderId = int.Parse(comboOrders.SelectedValue.ToString().Split('-')[0]);
                     Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
 
                     foreach (var orderItem in _ctx.OrderItems.Where(oi => oi.Order == order))
@@ -65,9 +65,9 @@ namespace Inventory_Manager.OrderForms
                     RefreshList();
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Please select an ID Column to delete");
+                MessageBox.Show("Please select an order to edit");
             }
         }
 
@@ -103,11 +103,18 @@ namespace Inventory_Manager.OrderForms
 
         private void txtFilterCustomer_TextChanged(object sender, EventArgs e)
         {
-            comboCustomer.DataSource = _ctx.Customers.Where(c => c.FullName.Contains(txtFilterCustomer.Text)).ToList();
-            if (!comboCustomer.Enabled)
+            try
             {
-                comboCustomer.Enabled = true;
-                comboOrders.Enabled = true;
+                comboCustomer.DataSource = _ctx.Customers.Where(c => c.FullName.Contains(txtFilterCustomer.Text)).ToList();
+                if (!comboCustomer.Enabled)
+                {
+                    comboCustomer.Enabled = true;
+                    comboOrders.Enabled = true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("I don't think that customer exists");
             }
         }
 
@@ -172,9 +179,9 @@ namespace Inventory_Manager.OrderForms
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            if (dataTableOrderItems.SelectedCells[0].ColumnIndex == 0)
+            try
             {
-                int orderId = int.Parse(dataTableOrderItems.SelectedCells[0].Value.ToString());
+                int orderId = int.Parse(comboOrders.SelectedValue.ToString().Split("-")[0]);
                 Order order = _ctx.Orders.SingleOrDefault(x => x.Id == orderId);
 
                 string empty_table_row = @"
@@ -184,8 +191,6 @@ namespace Inventory_Manager.OrderForms
                     <td></td>
                     <td>-</td>
                 </tr>";
-
-
 
                 string inv_id = $"INV-{order.Id.ToString()}";
                 string issued = DateTime.Now.ToString("MMM dd yyyy");
@@ -225,13 +230,15 @@ namespace Inventory_Manager.OrderForms
                 }
                 if (order.Items.Count <= 2)
                 {
-                    for (int i = 0; i <= 4; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         doc.GetElementbyId("tbody").InnerHtml += empty_table_row;
                     }
                 }
 
-                doc.Save($@"C:\Users\{Environment.UserName}\Documents\Invoice_{customer}.html", Encoding.UTF8);
+                EnsureCreated($@"C:\Users\{Environment.UserName}\Documents\Inventory Manager\{customer}");
+
+                doc.Save($@"C:\Users\{Environment.UserName}\Documents\Inventory Manager\{customer}\Invoice_{customer}_{DateTime.Now.ToString("dd-MMM-yyyy")}.html", Encoding.UTF8);
                 // using (FileStream htmlSource = File.Open(@"invoice.html", FileMode.Open))
                 // using (FileStream pdfDest = File.Open($@"C:\Users\{Environment.UserName}\Documents\Invoice.pdf", FileMode.OpenOrCreate))
                 // {
@@ -242,9 +249,38 @@ namespace Inventory_Manager.OrderForms
 
                 MessageBox.Show("Created Invoice!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please select an ID Column to edit");
+                MessageBox.Show(ex.Message, "Something went wrong");
+            }
+        }
+
+        private void EnsureCreated(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+        }
+
+        private void txtFilterOrder_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                comboOrders.DataSource = _ctx.Orders
+                .Where(
+                    o => o.ByCustomer == comboCustomer.SelectedValue &&
+                    o.DateCreated.Day.ToString() == txtFilterOrder.Text
+                )
+                .ToList();
+                if (!comboOrders.Enabled)
+                {
+                    comboOrders.Enabled = true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Probably no Orders where found for that Date");
             }
         }
     }

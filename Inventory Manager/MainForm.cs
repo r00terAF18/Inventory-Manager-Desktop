@@ -14,6 +14,7 @@ namespace Inventory_Manager
             ctx = new();
             ctx.Database.EnsureCreatedAsync();
             ctx.Database.MigrateAsync();
+            EnsureCreated($@"C:\Users\{Environment.UserName}\Documents\Inventory Manager");
         }
 
         private void btnListCustomer_Click(object sender, EventArgs e)
@@ -38,6 +39,14 @@ namespace Inventory_Manager
         {
             OrderList o = new(ctx);
             o.Show();
+        }
+
+        private void EnsureCreated(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
     }
 }
