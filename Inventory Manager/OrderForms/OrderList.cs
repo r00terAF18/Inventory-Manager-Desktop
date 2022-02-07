@@ -1,8 +1,7 @@
 ﻿using System.Data;
 using Inventory_Manager.Models;
 using iText.Html2pdf;
-using HtmlAgilityPack;
-
+using System.Text;
 
 namespace Inventory_Manager.OrderForms
 {
@@ -152,6 +151,25 @@ namespace Inventory_Manager.OrderForms
             }
         }
 
+        private string AddComma(string input)
+        {
+            input = input.Insert(input.Length - 3, ",");
+            if (input.Length >= 8)
+            {
+                input = input.Insert(input.Length - 7, ",");
+            }
+            if (input.Length >= 11)
+            {
+                input = input.Insert(input.Length - 10, ",");
+            }
+            if (input.Length >= 14)
+            {
+                input = input.Insert(input.Length - 13, ",");
+            }
+
+            return input;
+        }
+
         private void btnPrint_Click(object sender, EventArgs e)
         {
             if (dataTableOrderItems.SelectedCells[0].ColumnIndex == 0)
@@ -170,8 +188,10 @@ namespace Inventory_Manager.OrderForms
 
 
                 string inv_id = $"INV-{order.Id.ToString()}";
-                string issued = DateTime.Now.ToString("MM dd yyyy");
+                string issued = DateTime.Now.ToString("MMM dd yyyy");
                 string customer = order.ByCustomer.FullName;
+                string total = AddComma(order.Total.ToString() + "000");
+                string transport_fee = AddComma(order.TransportFee.ToString() + "000");
 
                 string html_doc = "";
 
@@ -186,18 +206,19 @@ namespace Inventory_Manager.OrderForms
                 doc.GetElementbyId("customer").InnerHtml = customer;
                 doc.GetElementbyId("inv-id").InnerHtml = inv_id;
                 doc.GetElementbyId("issued").InnerHtml = issued;
-                doc.GetElementbyId("subtotal").InnerHtml = order.Total.ToString();
-                doc.GetElementbyId("transport_fee").InnerHtml = order.TransportFee.ToString();
-                doc.GetElementbyId("debt").InnerHtml = order.ByCustomer.InDebt.ToString();
+                doc.GetElementbyId("subtotal").InnerHtml = total;
+                doc.GetElementbyId("transport_fee").InnerHtml = transport_fee;
+                doc.GetElementbyId("debt").InnerHtml = AddComma(order.ByCustomer.InDebt.ToString() + "000");
 
                 foreach (OrderItem orderItem in order.Items)
                 {
-                    string amount = (orderItem.Product.SellPrice * orderItem.Quantity).ToString();
+                    string amount = AddComma((orderItem.Product.SellPrice * orderItem.Quantity).ToString() + "000");
+                    string price = AddComma(orderItem.Product.SellPrice.ToString() + "000");
                     string table_row = $@"
                     <tr>
                         <td>{orderItem.Product.Name}</td>
                         <td>{orderItem.Quantity.ToString()}</td>
-                        <td>{orderItem.Product.SellPrice.ToString()}</td>
+                        <td>{price}</td>
                         <td>{amount}</td>
                     </tr>";
                     doc.GetElementbyId("tbody").InnerHtml += table_row;
@@ -210,14 +231,14 @@ namespace Inventory_Manager.OrderForms
                     }
                 }
 
-                doc.Save("invoice.html");
-
-                using (FileStream htmlSource = File.Open(@"invoice.html", FileMode.Open))
-                using (FileStream pdfDest = File.Open($@"C:\Users\{Environment.UserName}\Documents\Invoice.pdf", FileMode.OpenOrCreate))
-                {
-                    ConverterProperties converterProperties = new ConverterProperties();
-                    HtmlConverter.ConvertToPdf(htmlSource, pdfDest, converterProperties);
-                }
+                doc.Save($@"C:\Users\{Environment.UserName}\Documents\Invoice_{customer}.html", Encoding.UTF8);
+                // using (FileStream htmlSource = File.Open(@"invoice.html", FileMode.Open))
+                // using (FileStream pdfDest = File.Open($@"C:\Users\{Environment.UserName}\Documents\Invoice.pdf", FileMode.OpenOrCreate))
+                // {
+                //     ConverterProperties converterProperties = new ConverterProperties();
+                //     converterProperties.SetCharset("utf-8");
+                //     HtmlConverter.ConvertToPdf(htmlSource, pdfDest, converterProperties);
+                // }
 
                 MessageBox.Show("Created Invoice!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <DebugType>full</DebugType>
+    <DebugType>none</DebugType>
     <SignAssembly>False</SignAssembly>
     <NeutralLanguage>en</NeutralLanguage>
     <ApplicationIcon>App.ico</ApplicationIcon>
